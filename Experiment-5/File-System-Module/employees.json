@@ -1,0 +1,16 @@
+[
+  {
+    "id": 2,
+    "name": "Atul",
+    "email": "atul@gmail.com",
+    "mobileNo": "8956232356",
+    "address": "Punjab"
+  },
+  {
+    "id": 3,
+    "name": "Amit Thakur",
+    "email": "amitkumar23328@gmail.com",
+    "mobileNo": "2356895623",
+    "address": "Himachal"
+  }
+]

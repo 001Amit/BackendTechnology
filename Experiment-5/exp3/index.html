@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function showSuccessMessage() {
+            alert('Registration successful!');
+            document.getElementById('signup-form').reset();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Add User</h1>
+        <form id="signup-form">
+            <label for="userid">User ID:</label>
+            <input type="text" id="userid" name="userid" required>
+            <br>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <label for="additional">Additional Info:</label>
+            <input type="text" id="additional" name="additional">
+            <br>
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <h2>Other Operations</h2>
+        <a href="/users">View All Users</a>
+        <h3>Update User</h3>
+        <form action="/users" method="POST" id="update-form">
+            <input type="hidden" name="_method" value="PUT">
+            <label for="update-id">User ID:</label>
+            <input type="text" id="update-id" name="id" required>
+            <br>
+            <label for="update-username">Username:</label>
+            <input type="text" id="update-username" name="username" required>
+            <br>
+            <label for="update-email">Email:</label>
+            <input type="email" id="update-email" name="email" required>
+            <br>
+            <label for="update-password">Password:</label>
+            <input type="password" id="update-password" name="password" required>
+            <br>
+            <label for="update-additional">Additional Info:</label>
+            <input type="text" id="update-additional" name="additional">
+            <br>
+            <button type="submit">Update User</button>
+        </form>
+
+        <h3>Delete User</h3>
+        <form action="/users" method="POST" id="delete-form">
+            <input type="hidden" name="_method" value="DELETE">
+            <label for="delete-id">User ID:</label>
+            <input type="text" id="delete-id" name="id" required>
+            <br>
+            <button type="submit">Delete User</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').onsubmit = function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+
+            fetch('/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data === 'Signup successful!') {
+                    showSuccessMessage();
+                } else {
+                    alert('Error: ' + data);
+                }
+            });
+        };
+
+        document.getElementById('update-form').onsubmit = function(event) {
+            event.preventDefault();
+            fetch('/users/' + document.getElementById('update-id').value, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: document.getElementById('update-username').value,
+                    email: document.getElementById('update-email').value,
+                    password: document.getElementById('update-password').value,
+                    additional: document.getElementById('update-additional').value
+                })
+            }).then(response => response.text()).then(data => alert(data));
+        };
+
+        document.getElementById('delete-form').onsubmit = function(event) {
+            event.preventDefault();
+            fetch('/users/' + document.getElementById('delete-id').value, {
+                method: 'DELETE'
+            }).then(response => response.text()).then(data => alert(data));
+        };
+    </script>
+</body>
+</html>

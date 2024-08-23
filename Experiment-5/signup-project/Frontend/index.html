@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style.css" />
+    <title>Employee Management System</title>
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <h1>Welcome to Employee Management System</h1>
+            <button id="addEmployeeButton">Add Employee</button>
+            <button id="employeeInfoButton">Employee Info</button>
+        </header>
+
+        <div id="employeeInfoSection" class="hidden">
+            <h2>Employee List</h2>
+            <input type="text" id="searchInput" placeholder="Search Employee" />
+            <button id="searchButton">Search</button>
+            <div id="employeeList"></div>
+        </div>
+
+        <div id="addEmployeeModal" class="modal hidden">
+            <form id="addEmployeeForm">
+                <input type="text" name="firstName" placeholder="First Name" required />
+                <input type="text" name="lastName" placeholder="Last Name" required />
+                <input type="email" name="email" placeholder="Email" required />
+                <input type="tel" name="contactNumber" placeholder="Contact Number" required />
+                <input type="date" name="dob" placeholder="Date of Birth" required />
+                <input type="text" name="address" placeholder="Address" required />
+                <input type="number" name="salary" placeholder="Salary" required />
+                <button type="submit">Create Employee</button>
+                <button type="button" class="cancel">Cancel</button>
+            </form>
+        </div>
+
+        <div id="editEmployeeModal" class="modal hidden">
+            <form id="editEmployeeForm">
+                <input type="text" name="firstName" placeholder="First Name" required />
+                <input type="text" name="lastName" placeholder="Last Name" required />
+                <input type="email" name="email" placeholder="Email" required />
+                <input type="tel" name="contactNumber" placeholder="Contact Number" required />
+                <input type="date" name="dob" placeholder="Date of Birth" required />
+                <input type="text" name="address" placeholder="Address" required />
+                <input type="number" name="salary" placeholder="Salary" required />
+                <button type="submit">Save Changes</button>
+                <button type="button" class="cancel">Cancel</button>
+            </form>
+        </div>
+    </div>
+    <script src="script1.js"></script>
+</body>
+</html>

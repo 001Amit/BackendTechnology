@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Application</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Function to create new data
+    async function createData() {
+      const data = {
+        id: document.getElementById('id').value,
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        mobileNo: document.getElementById('mobileNo').value,
+        address: document.getElementById('address').value
+      };
+      await fetch('/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      alert('Data created');
+      clearForm();
+    }
+
+    // Function to read data
+    async function readData() {
+      const response = await fetch('/read');
+      const data = await response.json();
+      alert(JSON.stringify(data, null, 2));
+    }
+
+    // Function to update existing data
+    async function updateData() {
+      const id = document.getElementById('id').value;
+      const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        mobileNo: document.getElementById('mobileNo').value,
+        address: document.getElementById('address').value
+      };
+      await fetch(`/update/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      alert('Data updated');
+      clearForm();
+    }
+
+    // Function to delete data
+    async function deleteData() {
+      const id = document.getElementById('id').value;
+      await fetch(`/delete/${id}`, { method: 'DELETE' });
+      alert('Data deleted');
+      clearForm();
+    }
+
+    // Function to clear form fields
+    function clearForm() {
+      document.getElementById('id').value = '';
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('mobileNo').value = '';
+      document.getElementById('address').value = '';
+    }
+  </script>
+</head>
+<body>
+  <h1>CRUD Application</h1>
+  <form onsubmit="event.preventDefault(); createData();" class="form-inline">
+    <label for="id">ID:</label>
+    <input type="text" id="id" placeholder="ID" /><br />
+    
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Name" required /><br />
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Email" required /><br />
+    
+    <label for="mobileNo">Mobile Number:</label>
+    <input type="text" id="mobileNo" placeholder="Mobile Number" required /><br />
+    
+    <label for="address">Address:</label>
+    <input type="text" id="address" placeholder="Address" required /><br />
+    
+    <button type="submit">Create</button>
+  </form>
+  <div class="button-container">
+    <button onclick="readData()">Read</button>
+    <button onclick="updateData()">Update</button>
+    <button onclick="deleteData()">Delete</button>
+  </div>
+</body>
+</html>

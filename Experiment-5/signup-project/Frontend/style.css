@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+h2 {
+    color: #555;
+}
+
+form, button {
+    margin: 10px 0;
+}
+
+input {
+    padding: 10px;
+    margin: 5px 0;
+    width: 200px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+    margin-left: calc(50% - 110px);
+    width: 220px;
+}
+
+.hidden {
+    display: none;
+}
+
+.employee-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
