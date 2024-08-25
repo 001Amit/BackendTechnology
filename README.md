@@ -53,7 +53,6 @@ This project integrates a login/signup system with the Employee Management Syste
 - Express
 - JSON
 - User Authentication
-![Description](https://example.com/C:\Users\amitk\OneDrive\Desktop\images\Screenshot 2024-08-11 140320.png)
 
  
 
